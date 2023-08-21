@@ -1,0 +1,21 @@
+Nivelamento - Mongo:
+
+Em MongoDB não há tabelas, mas sim coleções de agregados
+
+Em bancos SQL, há o problema da incompatibilidade de impedância. O problema é o seguinte: Quando no disco, os dados do
+banco ficam salvos como tabelas e suas respectivas linhas para que, quando na memória RAM, virem os objetos.
+A problemática é que ele precisa ficar fazendo essa conversão de tabela para objeto constantemente. Com o ORM, tiramos
+a necessidade de fazer isso em código, mas isso continua acontecendo (mapeamento objeto-relacional). Isso é a forma usa
+da para diminuir o problema dos programadores com a incompatibilidade de impedância. Contudo, há problemas performáticos
+no uso do ORM (com ou sem ORM, transações e junções degradam performance, principalmente junções)
+O problema é que para conseguir dados, muitas vezes, precisamos de dados de várias tabelas
+
+- Possui uma boa execução em clusters (bancos NoQSL admitem grande volume de dados de forma mais barata que SQL)
+- Não utilizam modelo relacional
+- Não tem esquema
+- MongoDB é um banco orientado a agregados que adota o modelo de documentos
+- Por exemplo, os dados de um pedido estão em várias linhas de várias tabelas. No caso do Mongo, ele trata o "pedido"
+de forma agregada, ou seja, como uma única unidade. Isso significa dizer que tudo está no mesmo lugar.
+    - Cada agregado já possui a estrutura de objetos associados, sendo igual ao que tem que ser na memória RAM.
+
+
