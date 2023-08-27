@@ -18,4 +18,12 @@ O problema é que para conseguir dados, muitas vezes, precisamos de dados de vá
 de forma agregada, ou seja, como uma única unidade. Isso significa dizer que tudo está no mesmo lugar.
     - Cada agregado já possui a estrutura de objetos associados, sendo igual ao que tem que ser na memória RAM.
 
+DTO (Data transfer object): é um objeto que tem o papel de carregar dados das entidades de forma simples,
+                            podendo inclusive "projetar" apenas alguns dados da entidade original. Vantagens:
+                            - Otimizar o tráfego (trafegando menos dados)
+                            - Evitar que dados de interesse exclusivo do sistema fiquem sendo expostos (por exemplo: senhas, dados de
+                            auditoria como data de criação e data de atualização do objeto, etc.)
+                            - Customizar os objetos trafegados conforme a necessidade de cada requisição (por exemplo: para alterar
+                            um produto, você precisa dos dados A, B e C; já para listar os produtos, eu preciso dos dados A, B e a
+                            categoria de cada produto, etc.).
 

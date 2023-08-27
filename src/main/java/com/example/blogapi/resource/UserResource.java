@@ -1,6 +1,7 @@
 package com.example.blogapi.resource;
 
 import com.example.blogapi.domain.User;
+import com.example.blogapi.dto.UserDTO;
 import com.example.blogapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -21,10 +20,12 @@ public class UserResource {
 
     // Endpoint /users (requisição GET)
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<User>> findAll() {
+    public ResponseEntity<List<UserDTO>> findAll() {
         List<User> list = userService.findAll();
 
-        return ResponseEntity.ok().body(list);
+        List<UserDTO> listDTO = list.stream().map(item -> new UserDTO(item)).toList();
+
+        return ResponseEntity.ok().body(listDTO);
     }
 
 }
