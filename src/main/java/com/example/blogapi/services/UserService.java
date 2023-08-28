@@ -1,6 +1,7 @@
 package com.example.blogapi.services;
 
 import com.example.blogapi.domain.User;
+import com.example.blogapi.dto.UserDTO;
 import com.example.blogapi.repository.UserRepository;
 import com.example.blogapi.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,13 @@ public class UserService {
         // Retorna null ou o obj no repository.findById(). Se não for null, return obj. Se for, orElseThrow com a exception
         Optional<User> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+    }
+
+    public User insert(User user) {
+        return repository.insert(user);
+    }
+
+    public User fromDTO(UserDTO userDTO) {
+        return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
     }
 }
