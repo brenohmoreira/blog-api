@@ -34,8 +34,8 @@ public class UserService {
 
     public void delete(String id) {
         // Reaproveitar o tratamento de exceção de findById
-        findById(id);
-        repository.deleteById(id);
+        User user = findById(id);
+        repository.delete(user);
     }
 
     public User fromDTO(UserDTO userDTO) {
