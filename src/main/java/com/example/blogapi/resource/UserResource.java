@@ -43,4 +43,11 @@ public class UserResource {
         return ResponseEntity.created(uri).build();
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> delete(@RequestBody String id) {
+        userService.delete(id);
+        // Retorna 204
+        return ResponseEntity.noContent().build();
+    }
+
 }
