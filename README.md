@@ -1,4 +1,3 @@
 # blog-api
-Back-end de um blog com MongoDB e Spring Boot ( + API Rest))
-
+API Rest de um blog feito em Spring Boot
 
