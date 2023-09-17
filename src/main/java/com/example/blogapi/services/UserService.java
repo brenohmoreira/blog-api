@@ -46,7 +46,7 @@ public class UserService {
     }
 
     public void updateData(User newUser, User user) {
-        newUser.setEmail(user.getName());
+        newUser.setName(user.getName());
         newUser.setEmail(user.getEmail());
     }
 
