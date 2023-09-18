@@ -1,3 +1,1 @@
-# blog-api
-API Rest de um blog feito em Spring Boot
-
+API Rest de um blog feito em Java (Spring) e MongoDB
