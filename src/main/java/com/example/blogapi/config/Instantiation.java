@@ -2,6 +2,7 @@ package com.example.blogapi.config;
 
 import com.example.blogapi.domain.Post;
 import com.example.blogapi.domain.User;
+import com.example.blogapi.repository.PostRepository;
 import com.example.blogapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,6 +17,8 @@ public class Instantiation implements CommandLineRunner {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PostRepository postRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -25,6 +28,7 @@ public class Instantiation implements CommandLineRunner {
 
         // Deleta para sempre ser os documentos inseridos por aqui
         userRepository.deleteAll();
+        postRepository.deleteAll();
 
         User breno = new User(null, "Breno de Abreu Moreira", "brenomoreira@gmail.com");
         User mariana = new User(null, "Mariana Ribeiro Novaes", "ribeiro_m@gmail.com");
@@ -34,6 +38,6 @@ public class Instantiation implements CommandLineRunner {
         Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia!", "Acordei feliz hoje!", mariana);
 
         userRepository.saveAll(Arrays.asList(breno, mariana, hugo));
-
+        postRepository.saveAll(Arrays.asList(post1, post2));
     }
 }
