@@ -1,5 +1,6 @@
 package com.example.blogapi.resource;
 
+import com.example.blogapi.domain.Post;
 import com.example.blogapi.domain.User;
 import com.example.blogapi.dto.UserDTO;
 import com.example.blogapi.services.UserService;
@@ -29,10 +30,17 @@ public class UserResource {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<UserDTO> findAll(@PathVariable String id) {
+    public ResponseEntity<UserDTO> findById(@PathVariable String id) {
         UserDTO userDTO = new UserDTO(userService.findById(id));
 
         return ResponseEntity.ok().body(userDTO);
+    }
+
+    @RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User user = userService.findById(id);
+
+        return ResponseEntity.ok().body(user.getPosts());
     }
 
     @RequestMapping(method = RequestMethod.POST)
