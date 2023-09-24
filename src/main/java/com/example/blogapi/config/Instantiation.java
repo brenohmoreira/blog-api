@@ -2,6 +2,7 @@ package com.example.blogapi.config;
 
 import com.example.blogapi.domain.Post;
 import com.example.blogapi.domain.User;
+import com.example.blogapi.dto.AuthorDTO;
 import com.example.blogapi.repository.PostRepository;
 import com.example.blogapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,12 @@ public class Instantiation implements CommandLineRunner {
         User mariana = new User(null, "Mariana Ribeiro Novaes", "ribeiro_m@gmail.com");
         User hugo = new User(null, "Hugo Campos Pinto", "hugo_cp@gmail.com");
 
-        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem!", "Vou viajar para São Paulo. Abraços!", mariana);
-        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia!", "Acordei feliz hoje!", mariana);
-
+        // Deve ser antes, pois DTO entra com ID e para ter o ID, já deve estar salvo
         userRepository.saveAll(Arrays.asList(breno, mariana, hugo));
+
+        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem!", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(mariana));
+        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia!", "Acordei feliz hoje!", new AuthorDTO(mariana));
+
         postRepository.saveAll(Arrays.asList(post1, post2));
     }
 }
